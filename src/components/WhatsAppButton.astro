@@ -1,0 +1,22 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const WHATSAPP_URL = 'https://wa.me/5519991371808?text=Olá! Gostaria de saber mais sobre os serviços da Nardini Seguros.';
+---
+
+<div class="fixed bottom-6 right-6 z-50 group">
+  <!-- Tooltip -->
+  <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-foreground px-3 py-1.5 text-sm font-medium text-background shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+    Fale Conosco
+  </span>
+
+  <a
+    href={WHATSAPP_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Fale conosco pelo WhatsApp"
+    class="flex items-center justify-center w-14 h-14 bg-[hsl(116,52%,32%)] hover:bg-[hsl(116,52%,28%)] hover:scale-110 text-white rounded-full shadow-2xl animate-pulse-gentle transition-all duration-200"
+  >
+    <Icon name="lucide:message-circle" class="h-7 w-7" />
+  </a>
+</div>

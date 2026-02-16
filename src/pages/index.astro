@@ -1,17 +1,32 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import HeroSection from '../components/HeroSection.astro';
+import SobreSection from '../components/SobreSection.astro';
+import ServicosSection from '../components/ServicosSection.astro';
+import DiferenciaisSection from '../components/DiferenciaisSection.astro';
+import ParaQuemSection from '../components/ParaQuemSection.astro';
+import DepoimentosSection from '../components/DepoimentosSection.tsx';
+import FAQSection from '../components/FAQSection.tsx';
+import ContatoSection from '../components/ContatoSection.tsx';
+import Footer from '../components/Footer.astro';
+import FinalCTASection from '../components/FinalCTASection.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <Header />
+  <main id="main-content">
+    <HeroSection />
+    <SobreSection />
+    <ServicosSection />
+    <DiferenciaisSection />
+    <ParaQuemSection />
+    <DepoimentosSection client:visible />
+    <FAQSection client:visible />
+    <ContatoSection client:visible />
+    <FinalCTASection />
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</Layout>

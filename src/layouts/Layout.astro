@@ -1,0 +1,315 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const SITE_URL = 'https://nardiniseguros.com.br';
+const SITE_NAME = 'Nardini Seguros e Protecao Veicular';
+const PHONE_MAIN = '(19) 3621-4061';
+const PHONE_WHATSAPP = '(19) 99137-1808';
+const EMAIL = 'atendimento.americanasp@gmail.com';
+
+const {
+  title = 'Nardini Seguros | Corretora de Seguros e Protecao Veicular em Americana SP',
+  description = 'Corretora de seguros, protecao veicular e rastreamento em Americana/SP. Atendimento 24h humanizado. Cotacao gratuita sem compromisso. Ligue: (19) 3621-4061.',
+} = Astro.props;
+
+const canonical = Astro.url.pathname === '/' ? SITE_URL : `${SITE_URL}${Astro.url.pathname}`;
+
+// Schema: Organization (InsuranceAgency) - entidade principal
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "InsuranceAgency",
+  "@id": `${SITE_URL}/#organization`,
+  name: SITE_NAME,
+  alternateName: "Nardini Seguros",
+  description: "Corretora de seguros, protecao veicular e rastreamento veicular em Americana, SP. Atendimento 24 horas humanizado para pessoas fisicas e juridicas.",
+  url: SITE_URL,
+  telephone: [PHONE_MAIN, PHONE_WHATSAPP],
+  email: EMAIL,
+  foundingDate: "2018",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Americana",
+    addressRegion: "SP",
+    postalCode: "13465-000",
+    addressCountry: "BR",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: -22.7392,
+    longitude: -47.3317,
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Americana",
+      containedInPlace: {
+        "@type": "State",
+        name: "Sao Paulo",
+        containedInPlace: {
+          "@type": "Country",
+          name: "Brasil",
+        },
+      },
+    },
+  ],
+  priceRange: "$$",
+  currenciesAccepted: "BRL",
+  paymentAccepted: "Cartao de Credito, PIX, Boleto",
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "08:00",
+    closes: "18:00",
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: PHONE_MAIN,
+      contactType: "customer service",
+      availableLanguage: "Portuguese",
+    },
+    {
+      "@type": "ContactPoint",
+      telephone: PHONE_WHATSAPP,
+      contactType: "sales",
+      availableLanguage: "Portuguese",
+      contactOption: "TollFree",
+    },
+  ],
+  sameAs: [],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicos de Seguros e Protecao Veicular",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Seguros Diversos",
+          description: "Protecao completa para auto, residencia, vida e muito mais.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Protecao Veicular",
+          description: "Alternativa acessivel ao seguro tradicional. Aceita veiculos de qualquer ano e modelo.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Rastreamento Veicular",
+          description: "Monitoramento 24h com localizacao em tempo real.",
+        },
+      },
+    ],
+  },
+};
+
+// Schema: WebSite
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  publisher: { "@id": `${SITE_URL}/#organization` },
+  inLanguage: "pt-BR",
+};
+
+// Schema: WebPage
+const webpageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${canonical}/#webpage`,
+  url: canonical,
+  name: title,
+  description: description,
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  about: { "@id": `${SITE_URL}/#organization` },
+  inLanguage: "pt-BR",
+  datePublished: "2024-01-15",
+  dateModified: new Date().toISOString().split('T')[0],
+};
+
+// Schema: FAQPage
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Qual a diferenca entre seguro e protecao veicular?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "O seguro e oferecido por seguradoras regulamentadas pela SUSEP, enquanto a protecao veicular e oferecida por associacoes e cooperativas. Ambos protegem seu veiculo, mas com estruturas diferentes. A Nardini Seguros trabalha com as duas modalidades.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "A protecao veicular aceita veiculos antigos?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sim. Uma das grandes vantagens da protecao veicular e aceitar veiculos de qualquer ano, incluindo modelos antigos que normalmente sao recusados por seguradoras tradicionais.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Como funciona o rastreamento veicular?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "E instalado um equipamento discreto no veiculo que permite acompanhar sua localizacao em tempo real pelo celular. Em caso de furto ou roubo, a central 24h atua imediatamente para recuperar o veiculo.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Motoristas de aplicativo podem contratar protecao veicular?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sim. A Nardini Seguros aceita motoristas de aplicativo como Uber e 99 sem restricoes. A protecao veicular e ideal para quem roda muito e precisa de uma cobertura acessivel.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "O atendimento da Nardini Seguros e realmente 24 horas?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sim. A Nardini Seguros oferece assistencia 24h com atendimento humanizado. Voce fala com pessoas reais, nao com robos.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Como solicitar uma cotacao na Nardini Seguros?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Entre em contato pelo WhatsApp (19) 99137-1808 ou pelo telefone (19) 3621-4061. A cotacao e 100% gratuita e sem compromisso.",
+      },
+    },
+  ],
+};
+
+// Schema: BreadcrumbList
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Inicio",
+      item: SITE_URL,
+    },
+  ],
+};
+
+// Last updated for GEO
+const lastUpdated = new Date().toISOString().split('T')[0];
+---
+
+<!doctype html>
+<html lang="pt-BR" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- SEO Primary -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- GEO: Content metadata for AI engines -->
+    <meta name="author" content="Nardini Seguros e Protecao Veicular" />
+    <meta name="publisher" content="Nardini Seguros" />
+    <meta name="date" content={lastUpdated} />
+    <meta name="last-modified" content={lastUpdated} />
+
+    <!-- Geo-targeting -->
+    <meta name="geo.region" content="BR-SP" />
+    <meta name="geo.placename" content="Americana" />
+    <meta name="geo.position" content="-22.7392;-47.3317" />
+    <meta name="ICBM" content="-22.7392, -47.3317" />
+
+    <!-- Open Graph (comprehensive) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Nardini Seguros" />
+    <meta property="og:image" content={`${SITE_URL}/og-image.jpg`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Nardini Seguros - Corretora de Seguros e Protecao Veicular em Americana SP" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${SITE_URL}/og-image.jpg`} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#1a1a4e" />
+    <meta name="msapplication-TileColor" content="#1a1a4e" />
+
+    <!-- DNS Prefetch for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://wa.me" />
+
+    <!-- Google Fonts - Plus Jakarta Sans (display) + DM Sans (body) -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webpageSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </head>
+  <body class="min-h-screen bg-background text-foreground antialiased">
+    <!-- Skip to content link (accessibility) -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-9999 focus:px-4 focus:py-2 focus:bg-secondary focus:text-white focus:rounded-lg">
+      Pular para o conteudo principal
+    </a>
+    <slot />
+
+    <!-- Scroll animation observer -->
+    <script>
+      function initScrollAnimations() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+
+        document.querySelectorAll('[data-animate]').forEach((el) => {
+          observer.observe(el);
+        });
+      }
+
+      initScrollAnimations();
+      document.addEventListener('astro:after-swap', initScrollAnimations);
+    </script>
+  </body>
+</html>

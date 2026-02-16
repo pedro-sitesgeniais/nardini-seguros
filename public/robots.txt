@@ -1,0 +1,20 @@
+# Nardini Seguros - robots.txt
+User-agent: *
+Allow: /
+Disallow: /404
+
+# AI Crawlers - allowed for GEO (Generative Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Sitemap
+Sitemap: https://nardiniseguros.com.br/sitemap-index.xml

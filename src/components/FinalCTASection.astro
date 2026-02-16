@@ -1,0 +1,67 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const WHATSAPP_URL = 'https://wa.me/551936214061?text=Ola! Gostaria de solicitar uma cotacao.';
+const PHONE_URL = 'tel:+551936214061';
+---
+
+<section class="relative overflow-hidden py-24 md:py-32" aria-labelledby="cta-heading">
+  <!-- Gradient background -->
+  <div
+    class="absolute inset-0 animate-gradient-shift"
+    style="background: linear-gradient(135deg, hsl(242 45% 15%) 0%, hsl(242 45% 22%) 40%, hsl(220 50% 20%) 70%, hsl(242 45% 12%) 100%); background-size: 200% 200%;"
+    aria-hidden="true"
+  ></div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-3xl mx-auto text-center" data-animate>
+      <!-- Glass card -->
+      <div class="glass rounded-3xl px-8 py-12 md:px-14 md:py-16">
+        <h2 id="cta-heading" class="font-display text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight tracking-tight">
+          Pronto para proteger o que mais importa?
+        </h2>
+        <p class="text-lg md:text-xl text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
+          Solicite sua cotacao gratuita e sem compromisso. Respondemos em minutos pelo WhatsApp.
+        </p>
+
+        <!-- Dual CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center h-13 px-8 rounded-xl text-lg font-bold bg-secondary hover:bg-secondary/90 text-white shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-200"
+            aria-label="Solicitar cotacao gratis pelo WhatsApp"
+          >
+            <Icon name="lucide:message-circle" class="h-5 w-5 mr-2" />
+            Solicitar Cotacao Gratis
+          </a>
+          <a
+            href={PHONE_URL}
+            class="inline-flex items-center justify-center h-13 px-8 rounded-xl text-lg font-medium glass text-white hover:bg-white/15 transition-all duration-200"
+            aria-label="Ligar para Nardini Seguros agora"
+          >
+            <Icon name="lucide:phone" class="h-5 w-5 mr-2" />
+            Ligar Agora
+          </a>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-sm text-white/70">
+            <Icon name="lucide:check-circle" class="h-4 w-4 text-secondary" />
+            Cotacao Gratuita
+          </span>
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-sm text-white/70">
+            <Icon name="lucide:check-circle" class="h-4 w-4 text-secondary" />
+            Sem Compromisso
+          </span>
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-sm text-white/70">
+            <Icon name="lucide:check-circle" class="h-4 w-4 text-secondary" />
+            Resposta Rapida
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

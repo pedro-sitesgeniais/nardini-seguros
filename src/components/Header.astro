@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import logo from '@/assets/images/logo-nardini.png';
+
+const NAV_ITEMS = [
+  { label: 'Sobre', href: '#sobre' },
+  { label: 'Serviços', href: '#servicos' },
+  { label: 'Diferenciais', href: '#diferenciais' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Contato', href: '#contato' },
+];
+
+const WHATSAPP_URL = 'https://wa.me/551936214061?text=Olá! Gostaria de solicitar uma cotação.';
+---
+
+<header class="sticky top-0 z-50 bg-background/95 backdrop-blur shadow-sm border-b border-border/50">
+  <div class="container mx-auto flex items-center justify-between py-3 px-4">
+    <a href="#" class="flex items-center gap-2" aria-label="Nardini Seguros - Início">
+      <Image src={logo} alt="Logo Nardini Seguros - Corretora de Seguros em Americana SP" class="h-10 w-auto" width={160} height={40} />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-6" aria-label="Navegação principal">
+      {NAV_ITEMS.map((item) => (
+        <a href={item.href} class="relative text-sm font-medium text-muted-foreground hover:text-primary transition-colors group">
+          {item.label}
+          <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-secondary rounded-full transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      ))}
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center h-10 px-5 py-2 rounded-lg text-sm font-semibold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200"
+      >
+        Solicite uma Cotação
+      </a>
+    </nav>
+
+    <!-- Mobile toggle -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 text-primary"
+      aria-label="Menu"
+      aria-expanded="false"
+    >
+      <Icon name="lucide:menu" class="h-6 w-6" id="icon-menu" />
+      <Icon name="lucide:x" class="h-6 w-6 hidden" id="icon-close" />
+    </button>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav
+    id="mobile-menu"
+    class="md:hidden bg-background border-t border-border/50 overflow-hidden transition-all duration-300"
+    aria-label="Menu mobile"
+    style="max-height: 0;"
+  >
+    <div class="flex flex-col p-4 gap-3">
+      {NAV_ITEMS.map((item) => (
+        <a
+          href={item.href}
+          class="mobile-nav-link text-base font-medium text-muted-foreground hover:text-primary py-2 transition-colors"
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center h-10 px-4 py-2 rounded-lg text-sm font-semibold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-md transition-all mt-2 w-full"
+      >
+        Solicite uma Cotação
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  function initMobileMenu() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu') as HTMLElement | null;
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+
+    if (!btn || !menu || !iconMenu || !iconClose) return;
+
+    btn.addEventListener('click', () => {
+      const isOpen = menu.style.maxHeight !== '0px' && menu.style.maxHeight !== '';
+      if (isOpen) {
+        menu.style.maxHeight = '0px';
+      } else {
+        menu.style.maxHeight = menu.scrollHeight + 'px';
+      }
+      iconMenu.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    menu.querySelectorAll('.mobile-nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.style.maxHeight = '0px';
+        iconMenu.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  initMobileMenu();
+  document.addEventListener('astro:after-swap', initMobileMenu);
+</script>

@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import heroBg from '@/assets/images/hero-bg.png';
+
+const WHATSAPP_URL = 'https://wa.me/551936214061?text=Olá! Gostaria de solicitar uma cotação.';
+---
+
+<section class="relative overflow-hidden text-white min-h-80 md:min-h-80 flex items-center">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <Image
+      src={heroBg}
+      alt="Familia protegida com seguro e protecao veicular Nardini Seguros em Americana SP"
+      class="w-full h-full object-cover"
+      loading="eager"
+      width={1920}
+      height={1080}
+    />
+    <!-- Gradient mesh overlay (animated) -->
+    <div
+      class="absolute inset-0 animate-gradient-shift"
+      style="background: linear-gradient(135deg, hsl(242 45% 15% / 0.85) 0%, hsl(242 45% 22% / 0.75) 35%, hsl(220 50% 18% / 0.80) 65%, hsl(242 45% 12% / 0.90) 100%); background-size: 200% 200%;"
+    ></div>
+  </div>
+
+  <div class="container mx-auto px-4 py-24 md:py-40 relative z-10">
+    <div class="max-w-3xl mx-auto text-center">
+      <!-- Glass badge -->
+      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8 animate-fade-up">
+        <Icon name="lucide:zap" class="h-4 w-4 text-secondary" />
+        <span class="text-sm font-medium text-white/90">Resposta rápida pelo WhatsApp</span>
+      </div>
+
+      <!-- Icon trio with gradient backgrounds -->
+      <div class="flex justify-center gap-4 mb-8 animate-fade-up animation-delay-100">
+        <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-secondary/20 shadow-md">
+          <Icon name="lucide:shield-check" class="h-7 w-7 text-secondary" />
+        </div>
+        <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-white/10 shadow-md">
+          <Icon name="lucide:car" class="h-7 w-7 text-white/80" />
+        </div>
+        <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-white/10 shadow-md">
+          <Icon name="lucide:map-pin" class="h-7 w-7 text-white/70" />
+        </div>
+      </div>
+
+      <h1 class="font-display text-5xl md:text-7xl font-extrabold mb-6 animate-fade-up animation-delay-200 leading-[1.05] tracking-tight">
+        Confiança que te<br class="hidden md:block" /> <span class="text-secondary">Protege!</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-white/80 mb-10 animate-fade-up animation-delay-300 max-w-2xl mx-auto leading-relaxed">
+        Seguros, Proteção Veicular e Rastreamento em Americana/SP. Atendimento 24h humanizado para você e sua família.
+      </p>
+
+      <!-- Dual CTAs -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animation-delay-400">
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center h-13 px-8 rounded-xl text-lg font-bold bg-secondary hover:bg-secondary/90 text-white shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-200"
+        >
+          <Icon name="lucide:message-circle" class="h-5 w-5 mr-2" />
+          Solicite uma Cotação
+        </a>
+        <a
+          href="#sobre"
+          class="inline-flex items-center justify-center h-13 px-8 rounded-xl text-lg font-medium glass text-white hover:bg-white/15 transition-all duration-200"
+        >
+          Saiba Mais
+          <Icon name="lucide:arrow-down" class="h-5 w-5 ml-2" />
+        </a>
+      </div>
+
+      <p class="text-sm text-white/40 mt-6 animate-fade-up animation-delay-500">
+        Cotação gratuita &bull; Sem compromisso &bull; Atendimento humanizado
+      </p>
+    </div>
+  </div>
+</section>

@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# debug/temp files
+extract-faq.ps1
+faq-snip.txt
+nul
+
+# claude local settings
+.claude/settings.local.json

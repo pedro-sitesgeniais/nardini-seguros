@@ -1,0 +1,37 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const items = [
+  { icon: 'lucide:heart', title: 'Atendimento Humanizado', desc: 'Cada cliente e tratado com atencao, respeito e dedicacao total. Sem robos, sem filas.' },
+  { icon: 'lucide:clock', title: 'Disponivel 24h', desc: 'Assistencia e suporte 24 horas por dia, 7 dias por semana. Sempre que voce precisar.' },
+  { icon: 'lucide:users', title: 'Para Todos', desc: 'Solucoes para pessoas fisicas e juridicas, motoristas de app e veiculos de qualquer ano.' },
+];
+---
+
+<section id="sobre" class="py-24 bg-muted/50" aria-labelledby="sobre-heading">
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-2xl mx-auto mb-14" data-animate>
+      <h2 id="sobre-heading" class="font-display text-3xl md:text-4xl font-extrabold text-primary mb-4 tracking-tight">Sobre a Nardini Seguros</h2>
+      <!-- GEO: Clear definition paragraph, easily citable by AI engines -->
+      <p class="text-muted-foreground text-lg leading-relaxed">
+        A <strong>Nardini Seguros</strong> e uma corretora de seguros e protecao veicular localizada em <strong>Americana, SP</strong>. Oferecemos seguros diversos, protecao veicular e rastreamento com atendimento 24 horas humanizado. Nossa missao e proteger o que mais importa para voce e sua familia com transparencia e agilidade.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8" role="list">
+      {items.map((item, i) => (
+        <article
+          class="flex flex-col items-center text-center p-8 rounded-2xl bg-background shadow-md hover:shadow-xl hover:-translate-y-1 border border-border/50 transition-all duration-300"
+          data-animate
+          style={`transition-delay: ${i * 150}ms`}
+          role="listitem"
+        >
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-secondary/15 to-secondary/5 flex items-center justify-center mb-5" aria-hidden="true">
+            <Icon name={item.icon} class="h-7 w-7 text-secondary" />
+          </div>
+          <h3 class="font-display text-lg font-bold text-primary mb-2">{item.title}</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
