@@ -7,14 +7,14 @@ interface Props {
 }
 
 const SITE_URL = 'https://nardiniseguros.com.br';
-const SITE_NAME = 'Nardini Seguros e Protecao Veicular';
+const SITE_NAME = 'Nardini Seguros e Proteção Veicular';
 const PHONE_MAIN = '(19) 3621-4061';
 const PHONE_WHATSAPP = '(19) 99137-1808';
 const EMAIL = 'atendimento.americanasp@gmail.com';
 
 const {
-  title = 'Nardini Seguros | Corretora de Seguros e Protecao Veicular em Americana SP',
-  description = 'Corretora de seguros, protecao veicular e rastreamento em Americana/SP. Atendimento 24h humanizado. Cotacao gratuita sem compromisso. Ligue: (19) 3621-4061.',
+  title = 'Nardini Seguros | Corretora de Seguros e Proteção Veicular em Americana SP',
+  description = 'Corretora de seguros, proteção veicular e rastreamento em Americana/SP. Atendimento 24h humanizado. Cotação gratuita sem compromisso. Ligue: (19) 3621-4061.',
 } = Astro.props;
 
 const canonical = Astro.url.pathname === '/' ? SITE_URL : `${SITE_URL}${Astro.url.pathname}`;
@@ -26,7 +26,7 @@ const orgSchema = {
   "@id": `${SITE_URL}/#organization`,
   name: SITE_NAME,
   alternateName: "Nardini Seguros",
-  description: "Corretora de seguros, protecao veicular e rastreamento veicular em Americana, SP. Atendimento 24 horas humanizado para pessoas fisicas e juridicas.",
+  description: "Corretora de seguros, proteção veicular e rastreamento veicular em Americana, SP. Atendimento 24 horas humanizado para pessoas físicas e jurídicas.",
   url: SITE_URL,
   telephone: [PHONE_MAIN, PHONE_WHATSAPP],
   email: EMAIL,
@@ -49,7 +49,7 @@ const orgSchema = {
       name: "Americana",
       containedInPlace: {
         "@type": "State",
-        name: "Sao Paulo",
+        name: "São Paulo",
         containedInPlace: {
           "@type": "Country",
           name: "Brasil",
@@ -59,7 +59,7 @@ const orgSchema = {
   ],
   priceRange: "$$",
   currenciesAccepted: "BRL",
-  paymentAccepted: "Cartao de Credito, PIX, Boleto",
+  paymentAccepted: "Cartão de Crédito, PIX, Boleto",
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -84,22 +84,22 @@ const orgSchema = {
   sameAs: [],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Servicos de Seguros e Protecao Veicular",
+    name: "Serviços de Seguros e Proteção Veicular",
     itemListElement: [
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
           name: "Seguros Diversos",
-          description: "Protecao completa para auto, residencia, vida e muito mais.",
+          description: "Proteção completa para auto, residência, vida e muito mais.",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Protecao Veicular",
-          description: "Alternativa acessivel ao seguro tradicional. Aceita veiculos de qualquer ano e modelo.",
+          name: "Proteção Veicular",
+          description: "Alternativa acessível ao seguro tradicional. Aceita veículos de qualquer ano e modelo.",
         },
       },
       {
@@ -107,7 +107,7 @@ const orgSchema = {
         itemOffered: {
           "@type": "Service",
           name: "Rastreamento Veicular",
-          description: "Monitoramento 24h com localizacao em tempo real.",
+          description: "Monitoramento 24h com localização em tempo real.",
         },
       },
     ],
@@ -147,18 +147,18 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Qual a diferenca entre seguro e protecao veicular?",
+      name: "Qual a diferença entre seguro e proteção veicular?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "O seguro e oferecido por seguradoras regulamentadas pela SUSEP, enquanto a protecao veicular e oferecida por associacoes e cooperativas. Ambos protegem seu veiculo, mas com estruturas diferentes. A Nardini Seguros trabalha com as duas modalidades.",
+        text: "O seguro é oferecido por seguradoras regulamentadas pela SUSEP, enquanto a proteção veicular é oferecida por associações e cooperativas. Ambos protegem seu veículo, mas com estruturas diferentes. A Nardini Seguros trabalha com as duas modalidades.",
       },
     },
     {
       "@type": "Question",
-      name: "A protecao veicular aceita veiculos antigos?",
+      name: "A proteção veicular aceita veículos antigos?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Sim. Uma das grandes vantagens da protecao veicular e aceitar veiculos de qualquer ano, incluindo modelos antigos que normalmente sao recusados por seguradoras tradicionais.",
+        text: "Sim. Uma das grandes vantagens da proteção veicular é aceitar veículos de qualquer ano, incluindo modelos antigos que normalmente são recusados por seguradoras tradicionais.",
       },
     },
     {
@@ -166,31 +166,31 @@ const faqSchema = {
       name: "Como funciona o rastreamento veicular?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "E instalado um equipamento discreto no veiculo que permite acompanhar sua localizacao em tempo real pelo celular. Em caso de furto ou roubo, a central 24h atua imediatamente para recuperar o veiculo.",
+        text: "É instalado um equipamento discreto no veículo que permite acompanhar sua localização em tempo real pelo celular. Em caso de furto ou roubo, a central 24h atua imediatamente para recuperar o veículo.",
       },
     },
     {
       "@type": "Question",
-      name: "Motoristas de aplicativo podem contratar protecao veicular?",
+      name: "Motoristas de aplicativo podem contratar proteção veicular?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Sim. A Nardini Seguros aceita motoristas de aplicativo como Uber e 99 sem restricoes. A protecao veicular e ideal para quem roda muito e precisa de uma cobertura acessivel.",
+        text: "Sim. A Nardini Seguros aceita motoristas de aplicativo como Uber e 99 sem restrições. A proteção veicular é ideal para quem roda muito e precisa de uma cobertura acessível.",
       },
     },
     {
       "@type": "Question",
-      name: "O atendimento da Nardini Seguros e realmente 24 horas?",
+      name: "O atendimento da Nardini Seguros é realmente 24 horas?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Sim. A Nardini Seguros oferece assistencia 24h com atendimento humanizado. Voce fala com pessoas reais, nao com robos.",
+        text: "Sim. A Nardini Seguros oferece assistência 24h com atendimento humanizado. Você fala com pessoas reais, não com robôs.",
       },
     },
     {
       "@type": "Question",
-      name: "Como solicitar uma cotacao na Nardini Seguros?",
+      name: "Como solicitar uma cotação na Nardini Seguros?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Entre em contato pelo WhatsApp (19) 99137-1808 ou pelo telefone (19) 3621-4061. A cotacao e 100% gratuita e sem compromisso.",
+        text: "Entre em contato pelo WhatsApp (19) 99137-1808 ou pelo telefone (19) 3621-4061. A cotação é 100% gratuita e sem compromisso.",
       },
     },
   ],
@@ -204,7 +204,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 1,
-      name: "Inicio",
+      name: "Início",
       item: SITE_URL,
     },
   ],
@@ -228,7 +228,7 @@ const lastUpdated = new Date().toISOString().split('T')[0];
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     <!-- GEO: Content metadata for AI engines -->
-    <meta name="author" content="Nardini Seguros e Protecao Veicular" />
+    <meta name="author" content="Nardini Seguros e Proteção Veicular" />
     <meta name="publisher" content="Nardini Seguros" />
     <meta name="date" content={lastUpdated} />
     <meta name="last-modified" content={lastUpdated} />
@@ -249,7 +249,7 @@ const lastUpdated = new Date().toISOString().split('T')[0];
     <meta property="og:image" content={`${SITE_URL}/og-image.jpg`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Nardini Seguros - Corretora de Seguros e Protecao Veicular em Americana SP" />
+    <meta property="og:image:alt" content="Nardini Seguros - Corretora de Seguros e Proteção Veicular em Americana SP" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -284,7 +284,7 @@ const lastUpdated = new Date().toISOString().split('T')[0];
   <body class="min-h-screen bg-background text-foreground antialiased">
     <!-- Skip to content link (accessibility) -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-9999 focus:px-4 focus:py-2 focus:bg-secondary focus:text-white focus:rounded-lg">
-      Pular para o conteudo principal
+      Pular para o conteúdo principal
     </a>
     <slot />
 

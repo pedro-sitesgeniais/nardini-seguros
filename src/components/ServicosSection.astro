@@ -1,25 +1,25 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-const WHATSAPP_URL = 'https://wa.me/551936214061?text=Ola! Gostaria de saber mais sobre ';
+const WHATSAPP_URL = 'https://wa.me/551936214061?text=Olá! Gostaria de saber mais sobre ';
 
 const services = [
   {
     icon: 'lucide:shield-check',
     title: 'Seguros Diversos',
-    desc: 'Protecao completa para auto, residencia, vida e muito mais. Trabalhamos com as melhores seguradoras do mercado para oferecer a cobertura ideal.',
+    desc: 'Proteção completa para auto, residência, vida e muito mais. Trabalhamos com as melhores seguradoras do mercado para oferecer a cobertura ideal.',
     cta: 'seguros.',
   },
   {
     icon: 'lucide:car',
-    title: 'Protecao Veicular',
-    desc: 'Alternativa acessivel ao seguro tradicional. Sem analise de perfil, aceita veiculos de qualquer ano e modelo, incluindo motoristas de aplicativo.',
-    cta: 'protecao veicular.',
+    title: 'Proteção Veicular',
+    desc: 'Alternativa acessível ao seguro tradicional. Sem análise de perfil, aceita veículos de qualquer ano e modelo, incluindo motoristas de aplicativo.',
+    cta: 'proteção veicular.',
   },
   {
     icon: 'lucide:radar',
     title: 'Rastreamento Veicular',
-    desc: 'Monitoramento 24h com localizacao em tempo real pelo celular. Central de recuperacao imediata em caso de furto ou roubo.',
+    desc: 'Monitoramento 24h com localização em tempo real pelo celular. Central de recuperação imediata em caso de furto ou roubo.',
     cta: 'rastreamento veicular.',
   },
 ];
@@ -28,8 +28,8 @@ const services = [
 <section id="servicos" class="py-28" aria-labelledby="servicos-heading">
   <div class="container mx-auto px-4">
     <div class="text-center mb-14" data-animate>
-      <h2 id="servicos-heading" class="font-display text-3xl md:text-4xl font-extrabold text-primary mb-4 tracking-tight">Nossos Servicos</h2>
-      <p class="text-muted-foreground text-lg max-w-xl mx-auto">Solucoes sob medida para proteger o que mais importa para voce e sua familia.</p>
+      <h2 id="servicos-heading" class="font-display text-3xl md:text-4xl font-extrabold text-primary mb-4 tracking-tight">Nossos Serviços</h2>
+      <p class="text-muted-foreground text-lg max-w-xl mx-auto">Soluções sob medida para proteger o que mais importa para você e sua família.</p>
     </div>
     <div class="grid md:grid-cols-3 gap-8" role="list">
       {services.map((s, i) => (
@@ -49,9 +49,9 @@ const services = [
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center w-full h-10 px-4 py-2 rounded-lg text-sm font-semibold border border-secondary/30 text-secondary hover:bg-secondary hover:text-secondary-foreground hover:shadow-md transition-all duration-200"
-            aria-label={`Solicitar cotacao de ${s.title} pelo WhatsApp`}
+            aria-label={`Solicitar cotação de ${s.title} pelo WhatsApp`}
           >
-            Solicitar Cotacao
+            Solicitar Cotação
           </a>
         </article>
       ))}

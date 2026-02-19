@@ -40,12 +40,12 @@ export default function ContatoSection() {
     try {
       const emailData = new FormData();
       emailData.append("access_key", WEB3FORMS_KEY);
-      emailData.append("subject", `Nova cotacao - ${nome} | Nardini Seguros`);
+      emailData.append("subject", `Nova cotação - ${nome} | Nardini Seguros`);
       emailData.append("from_name", "Nardini Seguros - Site");
       emailData.append("to", EMAIL_DESTINO);
       emailData.append("Nome", nome);
       emailData.append("Telefone", telefone);
-      emailData.append("Veiculo", veiculo || "Nao informado");
+      emailData.append("Veículo", veiculo || "Não informado");
       emailData.append("Mensagem", mensagem || "Sem mensagem adicional");
       emailData.append("redirect", "false");
 
@@ -68,7 +68,7 @@ export default function ContatoSection() {
 
     // 2) Abrir WhatsApp sempre (backup garantido)
     const whatsText = encodeURIComponent(
-      `Ola! Meu nome e ${nome}.\nTelefone: ${telefone}\nVeiculo: ${veiculo}\nMensagem: ${mensagem}`
+      `Olá! Meu nome é ${nome}.\nTelefone: ${telefone}\nVeículo: ${veiculo}\nMensagem: ${mensagem}`
     );
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsText}`, "_blank");
 
@@ -80,7 +80,7 @@ export default function ContatoSection() {
   const infoItems = [
     { icon: Phone, label: "Telefones", lines: ["(19) 3621-4061", "(19) 99137-1808"] },
     { icon: Mail, label: "E-mail", lines: [EMAIL_DESTINO] },
-    { icon: MapPin, label: "Endereco", lines: ["Rua Sao Gabriel, 733, Americana, SP 13472-000"] },
+    { icon: MapPin, label: "Endereço", lines: ["Rua São Gabriel, 733, Americana, SP 13472-000"] },
   ];
 
   return (
@@ -88,7 +88,7 @@ export default function ContatoSection() {
       <div className="container mx-auto px-4">
         <div className={`text-center mb-14 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 id="contato-heading" className="font-display text-3xl md:text-4xl font-extrabold text-primary mb-4 tracking-tight">Entre em Contato</h2>
-          <p className="text-muted-foreground text-lg">Solicite sua cotacao ou tire suas duvidas.</p>
+          <p className="text-muted-foreground text-lg">Solicite sua cotação ou tire suas dúvidas.</p>
         </div>
 
         <div className={`grid md:grid-cols-2 gap-12 max-w-5xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "200ms" }}>
@@ -110,15 +110,15 @@ export default function ContatoSection() {
               onChange={(e) => setForm({ ...form, telefone: e.target.value })}
               maxLength={20}
               required
-              aria-label="Numero de telefone"
+              aria-label="Número de telefone"
               className="hover:border-secondary/50 focus:shadow-md transition-all"
             />
             <Input
-              placeholder="Tipo de veiculo"
+              placeholder="Tipo de veículo"
               value={form.veiculo}
               onChange={(e) => setForm({ ...form, veiculo: e.target.value })}
               maxLength={50}
-              aria-label="Tipo de veiculo"
+              aria-label="Tipo de veículo"
               className="hover:border-secondary/50 focus:shadow-md transition-all"
             />
             <Textarea
