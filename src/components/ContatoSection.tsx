@@ -14,6 +14,31 @@ const WEB3FORMS_KEY = "YOUR_ACCESS_KEY_HERE";
 const WHATSAPP_NUMBER = "5519991371808";
 const EMAIL_DESTINO = "contato@sitesgeniais.com.br";
 
+function maskDate(value: string): string {
+  const digits = value.replace(/\D/g, "").slice(0, 8);
+  if (digits.length <= 2) return digits;
+  if (digits.length <= 4) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+  return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
+}
+
+function maskPhone(value: string): string {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length === 0) return "";
+  if (digits.length <= 2) return `(${digits}`;
+  if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  if (digits.length <= 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+}
+
+function maskPlaca(value: string): string {
+  const clean = value.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(0, 7);
+  if (clean.length <= 3) return clean;
+  // Mercosul: 5o caractere (index 4) e letra → ABC1D23
+  if (clean.length >= 5 && /[A-Z]/.test(clean[4])) return clean;
+  // Formato antigo: ABC-1234
+  return `${clean.slice(0, 3)}-${clean.slice(3)}`;
+}
+
 export default function ContatoSection() {
   const { ref, isVisible } = useScrollAnimation();
   const [form, setForm] = useState({ nome: "", dataNascimento: "", telefone: "", placa: "", cidade: "" });
@@ -107,7 +132,7 @@ export default function ContatoSection() {
             <Input
               placeholder="Data de Nascimento (dd/mm/aaaa)"
               value={form.dataNascimento}
-              onChange={(e) => setForm({ ...form, dataNascimento: e.target.value })}
+              onChange={(e) => setForm({ ...form, dataNascimento: maskDate(e.target.value) })}
               maxLength={10}
               aria-label="Data de nascimento"
               className="hover:border-secondary/50 focus:shadow-md transition-all"
@@ -116,17 +141,17 @@ export default function ContatoSection() {
               placeholder="Telefone"
               type="tel"
               value={form.telefone}
-              onChange={(e) => setForm({ ...form, telefone: e.target.value })}
-              maxLength={20}
+              onChange={(e) => setForm({ ...form, telefone: maskPhone(e.target.value) })}
+              maxLength={15}
               required
               aria-label="Número de telefone"
               className="hover:border-secondary/50 focus:shadow-md transition-all"
             />
             <Input
-              placeholder="Placa"
+              placeholder="Placa (ABC-1234 ou ABC1D23)"
               value={form.placa}
-              onChange={(e) => setForm({ ...form, placa: e.target.value })}
-              maxLength={10}
+              onChange={(e) => setForm({ ...form, placa: maskPlaca(e.target.value) })}
+              maxLength={8}
               aria-label="Placa do veículo"
               className="hover:border-secondary/50 focus:shadow-md transition-all"
             />
