@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { useScrollAnimation } from "./useScrollAnimation";
 
 interface FeedbackMessage {
@@ -17,16 +16,17 @@ const EMAIL_DESTINO = "contato@sitesgeniais.com.br";
 
 export default function ContatoSection() {
   const { ref, isVisible } = useScrollAnimation();
-  const [form, setForm] = useState({ nome: "", telefone: "", veiculo: "", mensagem: "" });
+  const [form, setForm] = useState({ nome: "", dataNascimento: "", telefone: "", placa: "", cidade: "" });
   const [feedback, setFeedback] = useState<FeedbackMessage | null>(null);
   const [sending, setSending] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const nome = form.nome.trim().slice(0, 100);
+    const dataNascimento = form.dataNascimento.trim();
     const telefone = form.telefone.trim().slice(0, 20);
-    const veiculo = form.veiculo.trim().slice(0, 50);
-    const mensagem = form.mensagem.trim().slice(0, 500);
+    const placa = form.placa.trim().slice(0, 10);
+    const cidade = form.cidade.trim().slice(0, 100);
 
     if (!nome || !telefone) {
       setFeedback({ text: "Preencha seu nome e telefone.", type: "error" });
@@ -44,9 +44,10 @@ export default function ContatoSection() {
       emailData.append("from_name", "Nardini Seguros - Site");
       emailData.append("to", EMAIL_DESTINO);
       emailData.append("Nome", nome);
+      emailData.append("Data de Nascimento", dataNascimento || "Não informada");
       emailData.append("Telefone", telefone);
-      emailData.append("Veículo", veiculo || "Não informado");
-      emailData.append("Mensagem", mensagem || "Sem mensagem adicional");
+      emailData.append("Placa", placa || "Não informada");
+      emailData.append("Cidade", cidade || "Não informada");
       emailData.append("redirect", "false");
 
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -68,12 +69,12 @@ export default function ContatoSection() {
 
     // 2) Abrir WhatsApp sempre (backup garantido)
     const whatsText = encodeURIComponent(
-      `Olá! Meu nome é ${nome}.\nTelefone: ${telefone}\nVeículo: ${veiculo}\nMensagem: ${mensagem}`
+      `Olá! Meu nome é ${nome}.\nData de Nascimento: ${dataNascimento}\nTelefone: ${telefone}\nPlaca: ${placa}\nCidade: ${cidade}`
     );
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsText}`, "_blank");
 
     setSending(false);
-    setForm({ nome: "", telefone: "", veiculo: "", mensagem: "" });
+    setForm({ nome: "", dataNascimento: "", telefone: "", placa: "", cidade: "" });
     setTimeout(() => setFeedback(null), 5000);
   };
 
@@ -95,12 +96,20 @@ export default function ContatoSection() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4 bg-background shadow-lg rounded-2xl p-8 border border-border/50">
             <Input
-              placeholder="Seu nome"
+              placeholder="Nome"
               value={form.nome}
               onChange={(e) => setForm({ ...form, nome: e.target.value })}
               maxLength={100}
               required
               aria-label="Nome completo"
+              className="hover:border-secondary/50 focus:shadow-md transition-all"
+            />
+            <Input
+              placeholder="Data de Nascimento"
+              type="date"
+              value={form.dataNascimento}
+              onChange={(e) => setForm({ ...form, dataNascimento: e.target.value })}
+              aria-label="Data de nascimento"
               className="hover:border-secondary/50 focus:shadow-md transition-all"
             />
             <Input
@@ -114,20 +123,19 @@ export default function ContatoSection() {
               className="hover:border-secondary/50 focus:shadow-md transition-all"
             />
             <Input
-              placeholder="Tipo de veículo"
-              value={form.veiculo}
-              onChange={(e) => setForm({ ...form, veiculo: e.target.value })}
-              maxLength={50}
-              aria-label="Tipo de veículo"
+              placeholder="Placa"
+              value={form.placa}
+              onChange={(e) => setForm({ ...form, placa: e.target.value })}
+              maxLength={10}
+              aria-label="Placa do veículo"
               className="hover:border-secondary/50 focus:shadow-md transition-all"
             />
-            <Textarea
-              placeholder="Sua mensagem (opcional)"
-              value={form.mensagem}
-              onChange={(e) => setForm({ ...form, mensagem: e.target.value })}
-              maxLength={500}
-              rows={4}
-              aria-label="Mensagem"
+            <Input
+              placeholder="Cidade"
+              value={form.cidade}
+              onChange={(e) => setForm({ ...form, cidade: e.target.value })}
+              maxLength={100}
+              aria-label="Cidade"
               className="hover:border-secondary/50 focus:shadow-md transition-all"
             />
             <Button
