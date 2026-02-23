@@ -10,9 +10,9 @@ interface FeedbackMessage {
 }
 
 // Web3Forms access key - gere a sua em https://web3forms.com
-const WEB3FORMS_KEY = "YOUR_ACCESS_KEY_HERE";
+const WEB3FORMS_KEY = "9108229a-23d2-468c-95c6-1308f7925cbd";
 const WHATSAPP_NUMBER = "5519991371808";
-const EMAIL_DESTINO = "contato@sitesgeniais.com.br";
+const EMAIL_DESTINO = "atendimento@nardiniseguros.com.br";
 
 function maskDate(value: string): string {
   const digits = value.replace(/\D/g, "").slice(0, 8);
