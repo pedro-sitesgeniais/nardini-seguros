@@ -105,10 +105,10 @@ export default function ContatoSection() {
               className="hover:border-secondary/50 focus:shadow-md transition-all"
             />
             <Input
-              placeholder="Data de Nascimento"
-              type="date"
+              placeholder="Data de Nascimento (dd/mm/aaaa)"
               value={form.dataNascimento}
               onChange={(e) => setForm({ ...form, dataNascimento: e.target.value })}
+              maxLength={10}
               aria-label="Data de nascimento"
               className="hover:border-secondary/50 focus:shadow-md transition-all"
             />
