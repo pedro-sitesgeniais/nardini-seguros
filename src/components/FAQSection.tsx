@@ -1,7 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useScrollAnimation } from "./useScrollAnimation";
 
-const WHATSAPP_URL = "https://wa.me/551936214061?text=Olá! Ainda tenho dúvidas e gostaria de ajuda.";
+const WHATSAPP_URL = "https://wa.me/5519936214061?text=Olá! Ainda tenho dúvidas e gostaria de ajuda.";
 
 const faqs = [
   { q: "Qual a diferença entre seguro e proteção veicular?", a: "A principal diferença está no modelo de funcionamento e na natureza jurídica de cada serviço. O seguro funciona no modelo tradicional: a seguradora assume o risco e o cliente paga por isso, normalmente com análises mais rígidas, preços mais altos e regras mais burocráticas. Já a proteção veicular, como a oferecida pela Proauto, funciona no modelo associativo: os associados se unem para dividir os custos dos sinistros. Isso permite mensalidades mais acessíveis, menos burocracia para adesão, cobertura ampla (incluindo roubo, furto, colisão, incêndio, fenômenos naturais e assistência 24h), e aprovação mais rápida com menos exigências. Vale ressaltar que a Proauto está devidamente cadastrada e regulada junto à SUSEP." },
