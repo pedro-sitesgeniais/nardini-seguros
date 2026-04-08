@@ -11,7 +11,6 @@ interface FeedbackMessage {
 
 // Web3Forms access key - gere a sua em https://web3forms.com
 const WEB3FORMS_KEY = "9108229a-23d2-468c-95c6-1308f7925cbd";
-const WHATSAPP_NUMBER = "5519936214061";
 const EMAIL_DESTINO = "atendimento@nardiniseguros.com.br";
 
 function maskDate(value: string): string {
@@ -83,20 +82,13 @@ export default function ContatoSection() {
       const result = await response.json();
 
       if (result.success) {
-        setFeedback({ text: "Mensagem enviada! Abrindo WhatsApp...", type: "success" });
+        setFeedback({ text: "Mensagem enviada com sucesso! Entraremos em contato em breve.", type: "success" });
       } else {
-        setFeedback({ text: "Abrindo WhatsApp para contato direto...", type: "success" });
+        setFeedback({ text: "Erro ao enviar. Tente novamente ou ligue para (19) 93621-4061.", type: "error" });
       }
     } catch {
-      // Se o email falhar, ainda abre o WhatsApp
-      setFeedback({ text: "Abrindo WhatsApp para contato direto...", type: "success" });
+      setFeedback({ text: "Erro ao enviar. Tente novamente ou ligue para (19) 93621-4061.", type: "error" });
     }
-
-    // 2) Abrir WhatsApp sempre (backup garantido)
-    const whatsText = encodeURIComponent(
-      `Olá! Meu nome é ${nome}.\nData de Nascimento: ${dataNascimento}\nTelefone: ${telefone}\nPlaca: ${placa}\nCidade: ${cidade}`
-    );
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsText}`, "_blank");
 
     setSending(false);
     setForm({ nome: "", dataNascimento: "", telefone: "", placa: "", cidade: "" });
@@ -173,7 +165,7 @@ export default function ContatoSection() {
               ) : (
                 <>
                   <Send className="h-5 w-5 mr-2" />
-                  Enviar e abrir WhatsApp
+                  Enviar Mensagem
                 </>
               )}
             </Button>

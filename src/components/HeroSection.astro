@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import heroBg from '@/assets/images/hero-bg.png';
 
-const WHATSAPP_URL = 'https://wa.me/5519936214061?text=Olá! Gostaria de solicitar uma cotação.';
 ---
 
 <section class="relative overflow-hidden text-white min-h-80 md:min-h-80 flex items-center">
@@ -29,7 +28,7 @@ const WHATSAPP_URL = 'https://wa.me/5519936214061?text=Olá! Gostaria de solicit
       <!-- Glass badge -->
       <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8 animate-fade-up">
         <Icon name="lucide:zap" class="h-4 w-4 text-secondary" />
-        <span class="text-sm font-medium text-white/90">Resposta rápida pelo WhatsApp</span>
+        <span class="text-sm font-medium text-white/90">Resposta rápida pelo formulário</span>
       </div>
 
       <!-- Icon trio with gradient backgrounds -->
@@ -56,12 +55,9 @@ const WHATSAPP_URL = 'https://wa.me/5519936214061?text=Olá! Gostaria de solicit
       <!-- Dual CTAs -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animation-delay-400">
         <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#contato"
           class="inline-flex items-center justify-center h-13 px-8 rounded-xl text-lg font-bold bg-secondary hover:bg-secondary/90 text-white shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-200"
         >
-          <Icon name="whatsapp" class="h-5 w-5 mr-2" />
           Solicite uma Cotação
         </a>
         <a

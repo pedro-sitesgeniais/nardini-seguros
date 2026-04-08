@@ -1,26 +1,21 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-const WHATSAPP_URL = 'https://wa.me/5519936214061?text=Olá! Gostaria de saber mais sobre ';
-
 const services = [
   {
     icon: 'lucide:shield-check',
     title: 'Seguros Diversos',
     desc: 'Proteção completa para auto, residência, vida e muito mais. Trabalhamos com as melhores seguradoras do mercado para oferecer a cobertura ideal.',
-    cta: 'seguros.',
   },
   {
     icon: 'lucide:car',
     title: 'Proteção Veicular',
     desc: 'Alternativa acessível ao seguro tradicional. Sem análise de perfil, aceita veículos de qualquer ano e modelo, incluindo motoristas de aplicativo.',
-    cta: 'proteção veicular.',
   },
   {
     icon: 'lucide:radar',
     title: 'Rastreamento Veicular',
     desc: 'Monitoramento 24h com localização em tempo real pelo celular. Central de recuperação imediata em caso de furto ou roubo.',
-    cta: 'rastreamento veicular.',
   },
 ];
 ---
@@ -45,11 +40,9 @@ const services = [
           <h3 class="font-display text-xl font-bold text-primary mb-3">{s.title}</h3>
           <p class="text-muted-foreground text-sm mb-6 leading-relaxed">{s.desc}</p>
           <a
-            href={WHATSAPP_URL + s.cta}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contato"
             class="inline-flex items-center justify-center w-full h-10 px-4 py-2 rounded-lg text-sm font-semibold border border-secondary/30 text-secondary hover:bg-secondary hover:text-secondary-foreground hover:shadow-md transition-all duration-200"
-            aria-label={`Solicitar cotação de ${s.title} pelo WhatsApp`}
+            aria-label={`Solicitar cotação de ${s.title}`}
           >
             Solicitar Cotação
           </a>

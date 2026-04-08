@@ -11,7 +11,6 @@ const NAV_ITEMS = [
   { label: 'Contato', href: '#contato' },
 ];
 
-const WHATSAPP_URL = 'https://wa.me/5519936214061?text=Olá! Gostaria de solicitar uma cotação.';
 ---
 
 <header class="sticky top-0 z-50 bg-background/95 backdrop-blur shadow-sm border-b border-border/50">
@@ -29,9 +28,7 @@ const WHATSAPP_URL = 'https://wa.me/5519936214061?text=Olá! Gostaria de solicit
         </a>
       ))}
       <a
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
+        href="#contato"
         class="inline-flex items-center justify-center h-10 px-5 py-2 rounded-lg text-sm font-semibold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200"
       >
         Solicite uma Cotação
@@ -67,10 +64,8 @@ const WHATSAPP_URL = 'https://wa.me/5519936214061?text=Olá! Gostaria de solicit
         </a>
       ))}
       <a
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center h-10 px-4 py-2 rounded-lg text-sm font-semibold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-md transition-all mt-2 w-full"
+        href="#contato"
+        class="mobile-nav-link inline-flex items-center justify-center h-10 px-4 py-2 rounded-lg text-sm font-semibold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-md transition-all mt-2 w-full"
       >
         Solicite uma Cotação
       </a>

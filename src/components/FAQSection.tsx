@@ -1,7 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useScrollAnimation } from "./useScrollAnimation";
 
-const WHATSAPP_URL = "https://wa.me/5519936214061?text=Olá! Ainda tenho dúvidas e gostaria de ajuda.";
 
 const faqs = [
   { q: "Qual a diferença entre seguro e proteção veicular?", a: "A principal diferença está no modelo de funcionamento e na natureza jurídica de cada serviço. O seguro funciona no modelo tradicional: a seguradora assume o risco e o cliente paga por isso, normalmente com análises mais rígidas, preços mais altos e regras mais burocráticas. Já a proteção veicular, como a oferecida pela Proauto, funciona no modelo associativo: os associados se unem para dividir os custos dos sinistros. Isso permite mensalidades mais acessíveis, menos burocracia para adesão, cobertura ampla (incluindo roubo, furto, colisão, incêndio, fenômenos naturais e assistência 24h), e aprovação mais rápida com menos exigências. Vale ressaltar que a Proauto está devidamente cadastrada e regulada junto à SUSEP." },
@@ -10,7 +9,7 @@ const faqs = [
   { q: "Como funciona o rastreamento veicular?", a: "Instalamos um equipamento discreto no seu veículo que permite acompanhar sua localização em tempo real pelo celular. Em caso de furto ou roubo, a central 24h atua para recuperar o veículo." },
   { q: "Motoristas de aplicativo (Uber/99) podem contratar?", a: "Sim! Aceitamos motoristas de aplicativo sem restrições. A proteção veicular é ideal para quem roda muito e precisa de uma cobertura acessível." },
   { q: "O atendimento é realmente 24 horas?", a: "Sim! Oferecemos assistência 24h com atendimento humanizado. Você fala com pessoas reais, não com robôs." },
-  { q: "Como solicitar uma cotação?", a: "É simples! Clique no botão 'Solicite uma Cotação' ou entre em contato pelo WhatsApp (19) 99137-1808. Respondemos rapidamente!" },
+  { q: "Como solicitar uma cotação?", a: "É simples! Clique no botão 'Solicite uma Cotação' e preencha o formulário. Você também pode ligar para (19) 93621-4061. Respondemos rapidamente!" },
 ];
 
 export default function FAQSection() {
@@ -41,9 +40,7 @@ export default function FAQSection() {
         <div className={`text-center mt-10 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "400ms" }}>
           <p className="text-muted-foreground mb-3">Ainda tem dúvidas?</p>
           <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contato"
             className="inline-flex items-center justify-center h-10 px-6 rounded-lg text-sm font-semibold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-md hover:shadow-lg transition-all duration-200"
           >
             Fale Conosco
