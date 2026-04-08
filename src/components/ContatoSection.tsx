@@ -9,8 +9,7 @@ interface FeedbackMessage {
   type: "error" | "success";
 }
 
-// Web3Forms access key - gere a sua em https://web3forms.com
-const WEB3FORMS_KEY = "9108229a-23d2-468c-95c6-1308f7925cbd";
+const WHATSAPP_NUMBER = "5519936214061";
 const EMAIL_DESTINO = "atendimento@nardiniseguros.com.br";
 
 function maskDate(value: string): string {
@@ -44,7 +43,7 @@ export default function ContatoSection() {
   const [feedback, setFeedback] = useState<FeedbackMessage | null>(null);
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const nome = form.nome.trim().slice(0, 100);
     const dataNascimento = form.dataNascimento.trim();
@@ -58,45 +57,18 @@ export default function ContatoSection() {
       return;
     }
 
-    setSending(true);
+    const whatsText = encodeURIComponent(
+      `Olá! Gostaria de solicitar uma cotação.\n\nNome: ${nome}\nData de Nascimento: ${dataNascimento || "Não informada"}\nTelefone: ${telefone}\nPlaca: ${placa || "Não informada"}\nCidade: ${cidade || "Não informada"}`
+    );
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsText}`, "_blank");
 
-    // 1) Enviar email via Web3Forms
-    try {
-      const emailData = new FormData();
-      emailData.append("access_key", WEB3FORMS_KEY);
-      emailData.append("subject", `Nova cotação - ${nome} | Nardini Seguros`);
-      emailData.append("from_name", "Nardini Seguros - Site");
-      emailData.append("to", EMAIL_DESTINO);
-      emailData.append("Nome", nome);
-      emailData.append("Data de Nascimento", dataNascimento || "Não informada");
-      emailData.append("Telefone", telefone);
-      emailData.append("Placa", placa || "Não informada");
-      emailData.append("Cidade", cidade || "Não informada");
-      emailData.append("redirect", "false");
-
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: emailData,
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setFeedback({ text: "Mensagem enviada com sucesso! Entraremos em contato em breve.", type: "success" });
-      } else {
-        setFeedback({ text: "Erro ao enviar. Tente novamente ou ligue para (19) 93621-4061.", type: "error" });
-      }
-    } catch {
-      setFeedback({ text: "Erro ao enviar. Tente novamente ou ligue para (19) 93621-4061.", type: "error" });
-    }
-
-    setSending(false);
+    setFeedback({ text: "Redirecionando para o WhatsApp...", type: "success" });
     setForm({ nome: "", dataNascimento: "", telefone: "", placa: "", cidade: "" });
     setTimeout(() => setFeedback(null), 5000);
   };
 
   const infoItems = [
-    { icon: Phone, label: "Telefone", lines: ["(19) 93621-4061"] },
+    { icon: Phone, label: "Telefone", lines: ["(19) 3621-4061"] },
     { icon: Mail, label: "E-mail", lines: [EMAIL_DESTINO] },
     { icon: MapPin, label: "Endereço", lines: ["Rua São Gabriel, 733, Americana, SP 13472-000"] },
   ];
@@ -165,7 +137,7 @@ export default function ContatoSection() {
               ) : (
                 <>
                   <Send className="h-5 w-5 mr-2" />
-                  Enviar Mensagem
+                  Enviar via WhatsApp
                 </>
               )}
             </Button>

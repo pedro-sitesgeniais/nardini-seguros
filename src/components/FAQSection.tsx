@@ -9,7 +9,7 @@ const faqs = [
   { q: "Como funciona o rastreamento veicular?", a: "Instalamos um equipamento discreto no seu veículo que permite acompanhar sua localização em tempo real pelo celular. Em caso de furto ou roubo, a central 24h atua para recuperar o veículo." },
   { q: "Motoristas de aplicativo (Uber/99) podem contratar?", a: "Sim! Aceitamos motoristas de aplicativo sem restrições. A proteção veicular é ideal para quem roda muito e precisa de uma cobertura acessível." },
   { q: "O atendimento é realmente 24 horas?", a: "Sim! Oferecemos assistência 24h com atendimento humanizado. Você fala com pessoas reais, não com robôs." },
-  { q: "Como solicitar uma cotação?", a: "É simples! Clique no botão 'Solicite uma Cotação' e preencha o formulário. Você também pode ligar para (19) 93621-4061. Respondemos rapidamente!" },
+  { q: "Como solicitar uma cotação?", a: "É simples! Clique no botão 'Solicite uma Cotação' e preencha o formulário. Você também pode ligar para (19) 3621-4061. Respondemos rapidamente!" },
 ];
 
 export default function FAQSection() {
