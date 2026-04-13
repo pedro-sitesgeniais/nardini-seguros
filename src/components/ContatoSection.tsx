@@ -84,6 +84,8 @@ export default function ContatoSection() {
         <div className={`grid md:grid-cols-2 gap-12 max-w-5xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "200ms" }}>
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4 bg-background shadow-lg rounded-2xl p-8 border border-border/50">
+          <h3 id="contato-heading" className="font-display text-center text-base md:text-xl font-extrabold text-primary mb-4 tracking-tight">Preencha e receba atendimento imediato pelo WhatsApp</h3>
+          <p className="text-muted-foreground text-center text-xs">Leva menos de 1 minuto — nossa equipe responde na hora.</p>
             <Input
               placeholder="Nome"
               value={form.nome}
