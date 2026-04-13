@@ -9,7 +9,7 @@ interface FeedbackMessage {
   type: "error" | "success";
 }
 
-const WHATSAPP_NUMBER = "5519936214061";
+const WHATSAPP_NUMBER = "551936214061";
 const EMAIL_DESTINO = "atendimento@nardiniseguros.com.br";
 
 function maskDate(value: string): string {
