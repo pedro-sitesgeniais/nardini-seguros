@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useScrollAnimation } from "./useScrollAnimation";
@@ -9,8 +9,13 @@ interface FeedbackMessage {
   type: "error" | "success";
 }
 
-const WHATSAPP_NUMBER = "551936214061";
+// Web3Forms access key
+const WEB3FORMS_KEY = "9108229a-23d2-468c-95c6-1308f7925cbd";
 const EMAIL_DESTINO = "atendimento@nardiniseguros.com.br";
+const WHATSAPP_NUMBER = "551936214061";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  "Olá! Gostaria de saber mais sobre os serviços da Nardini Seguros."
+)}`;
 
 function maskDate(value: string): string {
   const digits = value.replace(/\D/g, "").slice(0, 8);
@@ -43,7 +48,7 @@ export default function ContatoSection() {
   const [feedback, setFeedback] = useState<FeedbackMessage | null>(null);
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const nome = form.nome.trim().slice(0, 100);
     const dataNascimento = form.dataNascimento.trim();
@@ -57,20 +62,75 @@ export default function ContatoSection() {
       return;
     }
 
-    const whatsText = encodeURIComponent(
-      `Olá! Gostaria de solicitar uma cotação.\n\nNome: ${nome}\nData de Nascimento: ${dataNascimento || "Não informada"}\nTelefone: ${telefone}\nPlaca: ${placa || "Não informada"}\nCidade: ${cidade || "Não informada"}`
-    );
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsText}`, "_blank");
+    setSending(true);
 
-    setFeedback({ text: "Redirecionando para o WhatsApp...", type: "success" });
-    setForm({ nome: "", dataNascimento: "", telefone: "", placa: "", cidade: "" });
-    setTimeout(() => setFeedback(null), 5000);
+    try {
+      const emailData = new FormData();
+      emailData.append("access_key", WEB3FORMS_KEY);
+      emailData.append("subject", `Nova cotação - ${nome} | Nardini Seguros`);
+      emailData.append("from_name", "Nardini Seguros - Site");
+      emailData.append("to", EMAIL_DESTINO);
+      emailData.append("Nome", nome);
+      emailData.append("Data de Nascimento", dataNascimento || "Não informada");
+      emailData.append("Telefone", telefone);
+      emailData.append("Placa", placa || "Não informada");
+      emailData.append("Cidade", cidade || "Não informada");
+      emailData.append("redirect", "false");
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: emailData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setFeedback({ text: "Mensagem enviada com sucesso! Entraremos em contato em breve.", type: "success" });
+        setForm({ nome: "", dataNascimento: "", telefone: "", placa: "", cidade: "" });
+      } else {
+        setFeedback({ text: "Erro ao enviar. Tente novamente ou fale pelo WhatsApp.", type: "error" });
+      }
+    } catch {
+      setFeedback({ text: "Erro ao enviar. Tente novamente ou fale pelo WhatsApp.", type: "error" });
+    }
+
+    setSending(false);
+    setTimeout(() => setFeedback(null), 6000);
   };
 
   const infoItems = [
-    { icon: Phone, label: "Telefone", lines: ["(19) 3621-4061"] },
-    { icon: Mail, label: "E-mail", lines: [EMAIL_DESTINO] },
-    { icon: MapPin, label: "Endereço", lines: ["Rua São Gabriel, 733, Americana, SP 13472-000"] },
+    {
+      icon: MessageCircle,
+      label: "WhatsApp",
+      value: "(19) 3621-4061",
+      href: WHATSAPP_URL,
+      external: true,
+      cta: "Abrir WhatsApp",
+    },
+    {
+      icon: Phone,
+      label: "Telefone",
+      value: "(19) 3621-4061",
+      href: "tel:+551936214061",
+      external: false,
+      cta: "Ligar agora",
+    },
+    {
+      icon: Mail,
+      label: "E-mail",
+      value: EMAIL_DESTINO,
+      href: `mailto:${EMAIL_DESTINO}`,
+      external: false,
+      cta: "Enviar e-mail",
+    },
+    {
+      icon: MapPin,
+      label: "Endereço",
+      value: "Rua São Gabriel, 733, Americana, SP 13472-000",
+      href: null,
+      external: false,
+      cta: null,
+    },
   ];
 
   return (
@@ -84,8 +144,8 @@ export default function ContatoSection() {
         <div className={`grid md:grid-cols-2 gap-12 max-w-5xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "200ms" }}>
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4 bg-background shadow-lg rounded-2xl p-8 border border-border/50">
-          <h3 id="contato-heading" className="font-display text-center text-base md:text-xl font-extrabold text-primary mb-4 tracking-tight">Preencha e receba atendimento imediato pelo WhatsApp</h3>
-          <p className="text-muted-foreground text-center text-xs">Leva menos de 1 minuto — nossa equipe responde na hora.</p>
+            <h3 className="font-display text-center text-base md:text-xl font-extrabold text-primary mb-1 tracking-tight">Solicite sua cotação por e-mail</h3>
+            <p className="text-muted-foreground text-center text-xs mb-4">Preencha os dados e nossa equipe retorna em breve.</p>
             <Input
               placeholder="Nome"
               value={form.nome}
@@ -139,7 +199,7 @@ export default function ContatoSection() {
               ) : (
                 <>
                   <Send className="h-5 w-5 mr-2" />
-                  Enviar via WhatsApp
+                  Enviar por E-mail
                 </>
               )}
             </Button>
@@ -152,19 +212,46 @@ export default function ContatoSection() {
 
           {/* Info */}
           <div className="space-y-4">
-            {infoItems.map((item) => (
-              <div key={item.label} className="flex items-start gap-4 p-4 rounded-xl bg-muted/50 shadow-sm border border-border/50">
-                <div className="w-10 h-10 rounded-lg bg-linear-to-br from-secondary/15 to-secondary/5 flex items-center justify-center shrink-0">
-                  <item.icon className="h-5 w-5 text-secondary" />
+            <div className="bg-linear-to-br from-secondary/10 to-secondary/5 border border-secondary/20 rounded-xl p-4 mb-2">
+              <p className="text-sm text-primary font-semibold mb-2">Prefere falar direto?</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">Clique em um dos contatos abaixo e fale com a nossa equipe agora mesmo.</p>
+            </div>
+            {infoItems.map((item) => {
+              const content = (
+                <>
+                  <div className="w-10 h-10 rounded-lg bg-linear-to-br from-secondary/15 to-secondary/5 flex items-center justify-center shrink-0">
+                    <item.icon className="h-5 w-5 text-secondary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-display font-bold text-primary text-sm">{item.label}</p>
+                    <p className="text-muted-foreground text-sm break-words">{item.value}</p>
+                    {item.cta && (
+                      <p className="text-secondary text-xs font-semibold mt-1">{item.cta} →</p>
+                    )}
+                  </div>
+                </>
+              );
+
+              if (item.href) {
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noopener noreferrer" : undefined}
+                    className="flex items-start gap-4 p-4 rounded-xl bg-muted/50 shadow-sm border border-border/50 hover:shadow-md hover:border-secondary/50 hover:bg-secondary/5 transition-all duration-200"
+                  >
+                    {content}
+                  </a>
+                );
+              }
+
+              return (
+                <div key={item.label} className="flex items-start gap-4 p-4 rounded-xl bg-muted/50 shadow-sm border border-border/50">
+                  {content}
                 </div>
-                <div>
-                  <p className="font-display font-bold text-primary text-sm">{item.label}</p>
-                  {item.lines.map((line) => (
-                    <p key={line} className="text-muted-foreground text-sm">{line}</p>
-                  ))}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

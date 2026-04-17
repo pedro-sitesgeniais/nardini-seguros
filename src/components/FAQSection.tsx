@@ -41,10 +41,12 @@ export default function FAQSection() {
         <div className={`text-center mt-10 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "400ms" }}>
           <p className="text-muted-foreground mb-3">Ainda tem dúvidas?</p>
           <a
-            href="#contato"
+            href="https://wa.me/551936214061?text=Ol%C3%A1!%20Gostaria%20de%20tirar%20algumas%20d%C3%BAvidas%20sobre%20os%20servi%C3%A7os%20da%20Nardini%20Seguros."
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center h-10 px-6 rounded-lg text-sm font-semibold bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-md hover:shadow-lg transition-all duration-200"
           >
-            Fale Conosco
+            Fale Conosco pelo WhatsApp
           </a>
         </div>
       </div>

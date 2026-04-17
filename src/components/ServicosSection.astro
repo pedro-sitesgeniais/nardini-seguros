@@ -40,9 +40,11 @@ const services = [
           <h3 class="font-display text-xl font-bold text-primary mb-3">{s.title}</h3>
           <p class="text-muted-foreground text-sm mb-6 leading-relaxed">{s.desc}</p>
           <a
-            href="#contato"
+            href={`https://wa.me/551936214061?text=${encodeURIComponent(`Olá! Gostaria de solicitar cotação de ${s.title} na Nardini Seguros.`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
             class="inline-flex items-center justify-center w-full h-10 px-4 py-2 rounded-lg text-sm font-semibold border border-secondary/30 text-secondary hover:bg-secondary hover:text-secondary-foreground hover:shadow-md transition-all duration-200"
-            aria-label={`Solicitar cotação de ${s.title}`}
+            aria-label={`Solicitar cotação de ${s.title} pelo WhatsApp`}
           >
             Solicitar Cotação
           </a>
