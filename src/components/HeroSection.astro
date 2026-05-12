@@ -2,10 +2,11 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import heroBg from '@/assets/images/hero-bg.png';
+import CotacaoForm from './CotacaoForm.tsx';
 
 ---
 
-<section class="relative overflow-hidden text-white min-h-80 md:min-h-80 flex items-center">
+<section class="relative overflow-hidden text-white min-h-screen md:min-h-[640px] flex items-center">
   <!-- Background image -->
   <div class="absolute inset-0">
     <Image
@@ -23,62 +24,51 @@ import heroBg from '@/assets/images/hero-bg.png';
     ></div>
   </div>
 
-  <div class="container mx-auto px-4 py-24 md:py-40 relative z-10">
-    <div class="max-w-3xl mx-auto text-center">
-      <!-- Glass badge -->
-      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8 animate-fade-up">
-        <Icon name="lucide:zap" class="h-4 w-4 text-secondary" />
-        <span class="text-sm font-medium text-white/90">Resposta rápida pelo formulário</span>
+  <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-6xl mx-auto">
+      <!-- Left: copy -->
+      <div class="text-center lg:text-left">
+        <!-- Glass badge -->
+        <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-6 animate-fade-up">
+          <Icon name="lucide:zap" class="h-4 w-4 text-secondary" />
+          <span class="text-sm font-medium text-white/90">Resposta rápida pelo formulário</span>
+        </div>
+
+        <!-- Icon trio with gradient backgrounds -->
+        <div class="flex justify-center lg:justify-start gap-4 mb-6 animate-fade-up animation-delay-100">
+          <div class="flex items-center justify-center w-12 h-12 rounded-2xl bg-secondary/20 shadow-md">
+            <Icon name="lucide:shield-check" class="h-6 w-6 text-secondary" />
+          </div>
+          <div class="flex items-center justify-center w-12 h-12 rounded-2xl bg-white/10 shadow-md">
+            <Icon name="lucide:car" class="h-6 w-6 text-white/80" />
+          </div>
+          <div class="flex items-center justify-center w-12 h-12 rounded-2xl bg-white/10 shadow-md">
+            <Icon name="lucide:map-pin" class="h-6 w-6 text-white/70" />
+          </div>
+        </div>
+
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 animate-fade-up animation-delay-200 leading-[1.05] tracking-tight">
+          Confiança que te <span class="text-secondary">Protege!</span>
+        </h1>
+
+        <p class="text-base md:text-lg text-white/80 mb-6 animate-fade-up animation-delay-300 max-w-xl lg:max-w-none mx-auto lg:mx-0 leading-relaxed">
+          Seguros, Proteção Veicular e Rastreamento em Americana/SP. Atendimento 24h humanizado para você e sua família.
+        </p>
+
+        <p class="text-sm text-white/50 mb-4 animate-fade-up animation-delay-400">
+          Cotação gratuita &bull; Sem compromisso &bull; Atendimento humanizado
+        </p>
+
+        <!-- Selo parceria ProAuto -->
+        <div class="inline-flex items-center gap-2 glass rounded-full px-5 py-2.5 animate-fade-up animation-delay-500">
+          <Icon name="lucide:badge-check" class="h-4 w-4 text-secondary" />
+          <span class="text-sm font-semibold text-white/90">Parceira autorizada ProAuto</span>
+        </div>
       </div>
 
-      <!-- Icon trio with gradient backgrounds -->
-      <div class="flex justify-center gap-4 mb-8 animate-fade-up animation-delay-100">
-        <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-secondary/20 shadow-md">
-          <Icon name="lucide:shield-check" class="h-7 w-7 text-secondary" />
-        </div>
-        <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-white/10 shadow-md">
-          <Icon name="lucide:car" class="h-7 w-7 text-white/80" />
-        </div>
-        <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-white/10 shadow-md">
-          <Icon name="lucide:map-pin" class="h-7 w-7 text-white/70" />
-        </div>
-      </div>
-
-      <h1 class="font-display text-5xl md:text-7xl font-extrabold mb-6 animate-fade-up animation-delay-200 leading-[1.05] tracking-tight">
-        Confiança que te<br class="hidden md:block" /> <span class="text-secondary">Protege!</span>
-      </h1>
-
-      <p class="text-lg md:text-xl text-white/80 mb-10 animate-fade-up animation-delay-300 max-w-2xl mx-auto leading-relaxed">
-        Seguros, Proteção Veicular e Rastreamento em Americana/SP. Atendimento 24h humanizado para você e sua família.
-      </p>
-
-      <!-- Dual CTAs -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animation-delay-400">
-        <a
-          href="https://wa.me/551936214061?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20uma%20cota%C3%A7%C3%A3o%20da%20Nardini%20Seguros."
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center h-13 px-8 rounded-xl text-lg font-bold bg-secondary hover:bg-secondary/90 text-white shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-200"
-        >
-          Solicite uma Cotação
-        </a>
-        <a
-          href="#sobre"
-          class="inline-flex items-center justify-center h-13 px-8 rounded-xl text-lg font-medium glass text-white hover:bg-white/15 transition-all duration-200"
-        >
-          Saiba Mais
-          <Icon name="lucide:arrow-down" class="h-5 w-5 ml-2" />
-        </a>
-      </div>
-
-      <p class="text-sm text-white/40 mt-6 animate-fade-up animation-delay-500">
-        Cotação gratuita &bull; Sem compromisso &bull; Atendimento humanizado
-      </p>
-
-      <!-- Selo parceria ProAuto -->
-      <div class="inline-flex items-center gap-2 glass rounded-full px-5 py-2.5 mt-6 animate-fade-up animation-delay-500">
-        <Icon name="lucide:badge-check" class="h-4 w-4 text-secondary" />
-        <span class="text-sm font-semibold text-white/90">Parceira autorizada ProAuto</span>
+      <!-- Right: form -->
+      <div class="animate-fade-up animation-delay-300 w-full max-w-md mx-auto lg:max-w-none">
+        <CotacaoForm client:load variant="hero" />
       </div>
     </div>
   </div>
